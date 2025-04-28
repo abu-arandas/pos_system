@@ -7,15 +7,44 @@ class AuthController extends GetxController {
   final GetStorage _storage = GetStorage();
   final Rx<User?> _user = Rx<User?>(null);
   final RxBool isLoading = false.obs;
+  final RxList<String> _userRoles = <String>[].obs;
   RxString email = ''.obs;
   RxString password = ''.obs;
 
   User? get user => _user.value;
+  List<String> get userRoles => _userRoles.toList();
 
   @override
   void onInit() {
     _user.bindStream(_auth.authStateChanges());
+    ever(_user, _onUserChanged);
     super.onInit();
+  }
+
+  void _onUserChanged(User? user) async {
+    if (user != null) {
+      // Fetch custom claims (roles)
+      final idTokenResult = await user.getIdTokenResult();
+      final claims = idTokenResult.claims;
+
+      // Extract roles from claims
+      if (claims != null && claims['roles'] != null) {
+        if (claims['roles'] is List) {
+          _userRoles.value = List<String>.from(claims['roles']);
+        } else if (claims['roles'] is Map) {
+          _userRoles.value = (claims['roles'] as Map)
+              .entries
+              .where((entry) => entry.value == true)
+              .map((entry) => entry.key.toString())
+              .toList();
+        }
+      } else {
+        // Default role if none specified
+        _userRoles.value = ['user'];
+      }
+    } else {
+      _userRoles.clear();
+    }
   }
 
   Future<void> signIn(String email, String password) async {

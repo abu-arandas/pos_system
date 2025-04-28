@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'firebase_options.dart';
 import 'app/routes/app_pages.dart';
-import 'app/controllers/auth_controller.dart';
+import 'app/bindings/app_bindings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,9 +32,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class InitialBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(AuthController(), permanent: true);
-  }
-}
+// InitialBinding moved to app/bindings/app_bindings.dart

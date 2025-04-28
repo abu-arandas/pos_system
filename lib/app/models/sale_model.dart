@@ -18,6 +18,7 @@ class Sale {
   final double total;
   final String paymentMethod;
   final DateTime createdAt;
+  final String status;
 
   Sale({
     this.id,
@@ -25,6 +26,7 @@ class Sale {
     required this.total,
     required this.paymentMethod,
     required this.createdAt,
+    this.status = 'pending',
   });
 
   Map<String, dynamic> toMap() {
@@ -37,12 +39,14 @@ class Sale {
       'total': total,
       'paymentMethod': paymentMethod,
       'createdAt': createdAt.toIso8601String(),
+      'status': status,
     };
   }
 
   factory Sale.fromMap(Map<String, dynamic> map) {
     return Sale(
       id: map['id'],
+      status: map['status'] ?? 'completed',
       items: (map['items'] as List)
           .map((item) => CartItem(
                 product: Product(
@@ -114,4 +118,4 @@ class Refund {
       createdAt: DateTime.parse(map['createdAt']),
     );
   }
-} 
+}
