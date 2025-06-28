@@ -6,6 +6,7 @@ class CategoryController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final RxList<Category> categories = <Category>[].obs;
   final RxBool isLoading = false.obs;
+  final RxString selectedCategoryId = ''.obs;
 
   @override
   void onInit() {
@@ -16,8 +17,15 @@ class CategoryController extends GetxController {
   Future<void> fetchCategories() async {
     try {
       isLoading.value = true;
-      final QuerySnapshot snapshot = await _firestore.collection('categories').get();
-      categories.value = snapshot.docs.map((doc) => Category.fromMap(doc.data() as Map<String, dynamic>)).toList();
+      final QuerySnapshot snapshot = await _firestore
+          .collection('categories')
+          .orderBy('name')
+          .get();
+      
+      categories.value = snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return Category.fromMap({'id': doc.id, ...data});
+      }).toList();
     } catch (e) {
       Get.snackbar('Error', 'Failed to fetch categories: ${e.toString()}', snackPosition: SnackPosition.BOTTOM);
     } finally {
@@ -28,8 +36,13 @@ class CategoryController extends GetxController {
   Future<void> addCategory(Category category) async {
     try {
       isLoading.value = true;
-      await _firestore.collection('categories').add(category.toMap());
-      await fetchCategories();
+      final docRef = await _firestore.collection('categories').add(category.toMap());
+      
+      // Add to local list
+      final newCategory = category.copyWith(id: docRef.id);
+      categories.add(newCategory);
+      categories.sort((a, b) => a.name.compareTo(b.name));
+      
       Get.snackbar('Success', 'Category added successfully', snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar('Error', 'Failed to add category: ${e.toString()}', snackPosition: SnackPosition.BOTTOM);
@@ -42,7 +55,14 @@ class CategoryController extends GetxController {
     try {
       isLoading.value = true;
       await _firestore.collection('categories').doc(id).update(category.toMap());
-      await fetchCategories();
+      
+      // Update local list
+      final index = categories.indexWhere((c) => c.id == id);
+      if (index != -1) {
+        categories[index] = category.copyWith(id: id);
+        categories.sort((a, b) => a.name.compareTo(b.name));
+      }
+      
       Get.snackbar('Success', 'Category updated successfully', snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar('Error', 'Failed to update category: ${e.toString()}', snackPosition: SnackPosition.BOTTOM);
@@ -54,8 +74,28 @@ class CategoryController extends GetxController {
   Future<void> deleteCategory(String id) async {
     try {
       isLoading.value = true;
+      
+      // Check if category is being used by any products
+      final productsSnapshot = await _firestore
+          .collection('products')
+          .where('categoryId', isEqualTo: id)
+          .limit(1)
+          .get();
+      
+      if (productsSnapshot.docs.isNotEmpty) {
+        Get.snackbar(
+          'Cannot Delete',
+          'This category is being used by products. Please remove products first.',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        return;
+      }
+      
       await _firestore.collection('categories').doc(id).delete();
-      await fetchCategories();
+      
+      // Remove from local list
+      categories.removeWhere((c) => c.id == id);
+      
       Get.snackbar('Success', 'Category deleted successfully', snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar('Error', 'Failed to delete category: ${e.toString()}', snackPosition: SnackPosition.BOTTOM);

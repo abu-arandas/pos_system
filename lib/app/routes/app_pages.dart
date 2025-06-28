@@ -5,6 +5,7 @@ import '../bindings/dashboard_binding.dart';
 import '../bindings/payment_binding.dart';
 import '../views/auth/login_view.dart';
 import '../views/dashboard_view.dart';
+import '../views/products/products_view.dart';
 import '../views/checkout_screen.dart';
 import '../views/payment_selection_screen.dart';
 import '../views/refund_screen.dart';
@@ -28,7 +29,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRODUCTS,
-      page: () => const SizedBox(), // Placeholder - implement ProductsView
+      page: () => const ProductsView(),
       binding: DashboardBinding(),
       middlewares: [CashierRoleMiddleware()],
     ),
