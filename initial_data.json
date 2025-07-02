@@ -1,0 +1,711 @@
+{
+  "businesses": [
+    {
+      "id": "business_001",
+      "name": "TechMart Electronics",
+      "description": "Premium electronics and gadgets retailer",
+      "type": "retail",
+      "ownerId": "user_001",
+      "email": "owner@techmart.com",
+      "phone": "+1-555-0123",
+      "address": "123 Tech Street",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94105",
+      "currency": "USD",
+      "timezone": "America/Los_Angeles",
+      "logoUrl": "https://example.com/logos/techmart.png",
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "settings": {
+        "taxRate": 0.0875,
+        "receiptFooter": "Thank you for shopping with TechMart!",
+        "allowReturns": true,
+        "returnPeriodDays": 30
+      }
+    },
+    {
+      "id": "business_002",
+      "name": "Bella's Bistro",
+      "description": "Authentic Italian restaurant with fresh ingredients",
+      "type": "restaurant",
+      "ownerId": "user_005",
+      "email": "info@bellasbistro.com",
+      "phone": "+1-555-0456",
+      "address": "456 Culinary Ave",
+      "city": "New York",
+      "state": "NY",
+      "country": "USA",
+      "postalCode": "10001",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "logoUrl": "https://example.com/logos/bellas.png",
+      "isActive": true,
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z",
+      "settings": {
+        "taxRate": 0.08,
+        "serviceChargeRate": 0.18,
+        "acceptReservations": true,
+        "maxTableSize": 8
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "user_001",
+      "email": "john.doe@techmart.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "role": "admin",
+      "businessId": "business_001",
+      "storeId": null,
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "metadata": {
+        "phoneNumber": "+1-555-0123",
+        "hireDate": "2024-01-01",
+        "department": "Management"
+      }
+    },
+    {
+      "id": "user_002",
+      "email": "sarah.manager@techmart.com",
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "role": "manager",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "isActive": true,
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z",
+      "metadata": {
+        "phoneNumber": "+1-555-0124",
+        "hireDate": "2024-01-02",
+        "department": "Store Operations"
+      }
+    },
+    {
+      "id": "user_003",
+      "email": "mike.cashier@techmart.com",
+      "firstName": "Mike",
+      "lastName": "Wilson",
+      "role": "cashier",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "isActive": true,
+      "createdAt": "2024-01-03T00:00:00.000Z",
+      "updatedAt": "2024-01-03T00:00:00.000Z",
+      "metadata": {
+        "phoneNumber": "+1-555-0125",
+        "hireDate": "2024-01-03",
+        "shift": "morning"
+      }
+    },
+    {
+      "id": "user_004",
+      "email": "lisa.cashier@techmart.com",
+      "firstName": "Lisa",
+      "lastName": "Brown",
+      "role": "cashier",
+      "businessId": "business_001",
+      "storeId": "store_002",
+      "isActive": true,
+      "createdAt": "2024-01-04T00:00:00.000Z",
+      "updatedAt": "2024-01-04T00:00:00.000Z",
+      "metadata": {
+        "phoneNumber": "+1-555-0126",
+        "hireDate": "2024-01-04",
+        "shift": "evening"
+      }
+    },
+    {
+      "id": "user_005",
+      "email": "bella@bellasbistro.com",
+      "firstName": "Isabella",
+      "lastName": "Romano",
+      "role": "admin",
+      "businessId": "business_002",
+      "storeId": null,
+      "isActive": true,
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z",
+      "metadata": {
+        "phoneNumber": "+1-555-0456",
+        "hireDate": "2024-01-15",
+        "department": "Owner/Chef"
+      }
+    }
+  ],
+  "stores": [
+    {
+      "id": "store_001",
+      "name": "TechMart Downtown",
+      "description": "Main flagship store in downtown San Francisco",
+      "businessId": "business_001",
+      "managerId": "user_002",
+      "address": "123 Tech Street",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94105",
+      "phone": "+1-555-0123",
+      "email": "downtown@techmart.com",
+      "isActive": true,
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "settings": {
+        "openingHours": {
+          "monday": "09:00-21:00",
+          "tuesday": "09:00-21:00",
+          "wednesday": "09:00-21:00",
+          "thursday": "09:00-21:00",
+          "friday": "09:00-22:00",
+          "saturday": "10:00-22:00",
+          "sunday": "11:00-20:00"
+        },
+        "maxCapacity": 100,
+        "hasWarehouse": true
+      }
+    },
+    {
+      "id": "store_002",
+      "name": "TechMart Mall",
+      "description": "Shopping mall location with high foot traffic",
+      "businessId": "business_001",
+      "managerId": "user_002",
+      "address": "789 Mall Plaza",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94102",
+      "phone": "+1-555-0127",
+      "email": "mall@techmart.com",
+      "isActive": true,
+      "createdAt": "2024-01-05T00:00:00.000Z",
+      "updatedAt": "2024-01-05T00:00:00.000Z",
+      "settings": {
+        "openingHours": {
+          "monday": "10:00-21:00",
+          "tuesday": "10:00-21:00",
+          "wednesday": "10:00-21:00",
+          "thursday": "10:00-21:00",
+          "friday": "10:00-22:00",
+          "saturday": "10:00-22:00",
+          "sunday": "11:00-20:00"
+        },
+        "maxCapacity": 75,
+        "hasWarehouse": false
+      }
+    },
+    {
+      "id": "store_003",
+      "name": "Bella's Bistro Main",
+      "description": "Main restaurant location",
+      "businessId": "business_002",
+      "managerId": "user_005",
+      "address": "456 Culinary Ave",
+      "city": "New York",
+      "state": "NY",
+      "country": "USA",
+      "postalCode": "10001",
+      "phone": "+1-555-0456",
+      "email": "main@bellasbistro.com",
+      "isActive": true,
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z",
+      "settings": {
+        "openingHours": {
+          "monday": "17:00-23:00",
+          "tuesday": "17:00-23:00",
+          "wednesday": "17:00-23:00",
+          "thursday": "17:00-23:00",
+          "friday": "17:00-24:00",
+          "saturday": "17:00-24:00",
+          "sunday": "16:00-22:00"
+        },
+        "seatingCapacity": 60,
+        "hasKitchen": true,
+        "acceptsReservations": true
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "product_001",
+      "name": "iPhone 15 Pro",
+      "description": "Latest Apple iPhone with Pro camera system",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "categoryId": "cat_smartphones",
+      "type": "variable",
+      "price": 999.99,
+      "costPrice": 750.00,
+      "sku": "IPHONE15PRO",
+      "barcode": "123456789012",
+      "imageUrls": [
+        "https://example.com/products/iphone15pro_1.jpg",
+        "https://example.com/products/iphone15pro_2.jpg"
+      ],
+      "stockQuantity": 25,
+      "lowStockThreshold": 5,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [
+        {
+          "id": "variant_001",
+          "name": "128GB Natural Titanium",
+          "price": 999.99,
+          "sku": "IPHONE15PRO-128-NT",
+          "stockQuantity": 10,
+          "attributes": {
+            "storage": "128GB",
+            "color": "Natural Titanium"
+          }
+        },
+        {
+          "id": "variant_002",
+          "name": "256GB Blue Titanium",
+          "price": 1099.99,
+          "sku": "IPHONE15PRO-256-BT",
+          "stockQuantity": 8,
+          "attributes": {
+            "storage": "256GB",
+            "color": "Blue Titanium"
+          }
+        },
+        {
+          "id": "variant_003",
+          "name": "512GB White Titanium",
+          "price": 1299.99,
+          "sku": "IPHONE15PRO-512-WT",
+          "stockQuantity": 7,
+          "attributes": {
+            "storage": "512GB",
+            "color": "White Titanium"
+          }
+        }
+      ],
+      "metadata": {
+        "brand": "Apple",
+        "warranty": "1 year",
+        "category": "Smartphones"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "product_002",
+      "name": "MacBook Air M3",
+      "description": "Ultra-thin laptop with M3 chip",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "categoryId": "cat_laptops",
+      "type": "variable",
+      "price": 1299.99,
+      "costPrice": 950.00,
+      "sku": "MACBOOKAIR-M3",
+      "barcode": "123456789013",
+      "imageUrls": [
+        "https://example.com/products/macbookair_1.jpg"
+      ],
+      "stockQuantity": 15,
+      "lowStockThreshold": 3,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [
+        {
+          "id": "variant_004",
+          "name": "13-inch 8GB/256GB Silver",
+          "price": 1299.99,
+          "sku": "MBA-M3-8-256-SLV",
+          "stockQuantity": 8,
+          "attributes": {
+            "screen": "13-inch",
+            "ram": "8GB",
+            "storage": "256GB",
+            "color": "Silver"
+          }
+        },
+        {
+          "id": "variant_005",
+          "name": "13-inch 16GB/512GB Space Gray",
+          "price": 1699.99,
+          "sku": "MBA-M3-16-512-SG",
+          "stockQuantity": 7,
+          "attributes": {
+            "screen": "13-inch",
+            "ram": "16GB",
+            "storage": "512GB",
+            "color": "Space Gray"
+          }
+        }
+      ],
+      "metadata": {
+        "brand": "Apple",
+        "warranty": "1 year",
+        "category": "Laptops"
+      },
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "product_003",
+      "name": "AirPods Pro (3rd Gen)",
+      "description": "Wireless earbuds with active noise cancellation",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "categoryId": "cat_audio",
+      "type": "simple",
+      "price": 249.99,
+      "costPrice": 180.00,
+      "sku": "AIRPODS-PRO-3",
+      "barcode": "123456789014",
+      "imageUrls": [
+        "https://example.com/products/airpods_pro.jpg"
+      ],
+      "stockQuantity": 50,
+      "lowStockThreshold": 10,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "brand": "Apple",
+        "warranty": "1 year",
+        "category": "Audio"
+      },
+      "createdAt": "2024-01-03T00:00:00.000Z",
+      "updatedAt": "2024-01-03T00:00:00.000Z"
+    },
+    {
+      "id": "product_004",
+      "name": "Samsung Galaxy S24 Ultra",
+      "description": "Premium Android smartphone with S Pen",
+      "businessId": "business_001",
+      "storeId": "store_002",
+      "categoryId": "cat_smartphones",
+      "type": "variable",
+      "price": 1199.99,
+      "costPrice": 850.00,
+      "sku": "GALAXY-S24-ULTRA",
+      "barcode": "123456789015",
+      "imageUrls": [
+        "https://example.com/products/galaxy_s24.jpg"
+      ],
+      "stockQuantity": 20,
+      "lowStockThreshold": 5,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [
+        {
+          "id": "variant_006",
+          "name": "256GB Titanium Black",
+          "price": 1199.99,
+          "sku": "GS24U-256-TB",
+          "stockQuantity": 12,
+          "attributes": {
+            "storage": "256GB",
+            "color": "Titanium Black"
+          }
+        },
+        {
+          "id": "variant_007",
+          "name": "512GB Titanium Violet",
+          "price": 1399.99,
+          "sku": "GS24U-512-TV",
+          "stockQuantity": 8,
+          "attributes": {
+            "storage": "512GB",
+            "color": "Titanium Violet"
+          }
+        }
+      ],
+      "metadata": {
+        "brand": "Samsung",
+        "warranty": "1 year",
+        "category": "Smartphones"
+      },
+      "createdAt": "2024-01-04T00:00:00.000Z",
+      "updatedAt": "2024-01-04T00:00:00.000Z"
+    },
+    {
+      "id": "product_005",
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with fresh mozzarella, tomato sauce, and basil",
+      "businessId": "business_002",
+      "storeId": "store_003",
+      "categoryId": "cat_pizza",
+      "type": "variable",
+      "price": 18.99,
+      "costPrice": 6.50,
+      "sku": "PIZZA-MARG",
+      "barcode": null,
+      "imageUrls": [
+        "https://example.com/products/margherita.jpg"
+      ],
+      "stockQuantity": 0,
+      "lowStockThreshold": null,
+      "trackInventory": false,
+      "isActive": true,
+      "variants": [
+        {
+          "id": "variant_008",
+          "name": "Small (10 inch)",
+          "price": 14.99,
+          "sku": "PIZZA-MARG-S",
+          "stockQuantity": 0,
+          "attributes": {
+            "size": "Small",
+            "diameter": "10 inch"
+          }
+        },
+        {
+          "id": "variant_009",
+          "name": "Medium (12 inch)",
+          "price": 18.99,
+          "sku": "PIZZA-MARG-M",
+          "stockQuantity": 0,
+          "attributes": {
+            "size": "Medium",
+            "diameter": "12 inch"
+          }
+        },
+        {
+          "id": "variant_010",
+          "name": "Large (14 inch)",
+          "price": 22.99,
+          "sku": "PIZZA-MARG-L",
+          "stockQuantity": 0,
+          "attributes": {
+            "size": "Large",
+            "diameter": "14 inch"
+          }
+        }
+      ],
+      "metadata": {
+        "category": "Pizza",
+        "dietary": ["vegetarian"],
+        "prepTime": "15 minutes"
+      },
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "product_006",
+      "name": "Chicken Alfredo Pasta",
+      "description": "Creamy fettuccine with grilled chicken and parmesan",
+      "businessId": "business_002",
+      "storeId": "store_003",
+      "categoryId": "cat_pasta",
+      "type": "simple",
+      "price": 24.99,
+      "costPrice": 8.50,
+      "sku": "PASTA-CHICK-ALF",
+      "barcode": null,
+      "imageUrls": [
+        "https://example.com/products/chicken_alfredo.jpg"
+      ],
+      "stockQuantity": 0,
+      "lowStockThreshold": null,
+      "trackInventory": false,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "category": "Pasta",
+        "dietary": ["gluten"],
+        "prepTime": "20 minutes"
+      },
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "product_007",
+      "name": "Tiramisu",
+      "description": "Traditional Italian dessert with coffee and mascarpone",
+      "businessId": "business_002",
+      "storeId": "store_003",
+      "categoryId": "cat_desserts",
+      "type": "simple",
+      "price": 8.99,
+      "costPrice": 3.00,
+      "sku": "DESSERT-TIRAMISU",
+      "barcode": null,
+      "imageUrls": [
+        "https://example.com/products/tiramisu.jpg"
+      ],
+      "stockQuantity": 12,
+      "lowStockThreshold": 3,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "category": "Desserts",
+        "dietary": ["vegetarian", "contains_alcohol"],
+        "prepTime": "5 minutes"
+      },
+      "createdAt": "2024-01-15T00:00:00.000Z",
+      "updatedAt": "2024-01-15T00:00:00.000Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "transaction_001",
+      "businessId": "business_001",
+      "storeId": "store_001",
+      "cashierId": "user_003",
+      "customerId": null,
+      "items": [
+        {
+          "productId": "product_003",
+          "productName": "AirPods Pro (3rd Gen)",
+          "variantId": null,
+          "variantName": null,
+          "unitPrice": 249.99,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 249.99
+        },
+        {
+          "productId": "product_001",
+          "productName": "iPhone 15 Pro",
+          "variantId": "variant_001",
+          "variantName": "128GB Natural Titanium",
+          "unitPrice": 999.99,
+          "quantity": 1,
+          "discount": 50.0,
+          "total": 949.99
+        }
+      ],
+      "subtotal": 1199.98,
+      "taxAmount": 105.00,
+      "discountAmount": 50.0,
+      "total": 1254.98,
+      "payments": [
+        {
+          "method": "card",
+          "amount": 1254.98,
+          "reference": "card_txn_12345",
+          "metadata": {
+            "cardType": "Visa",
+            "last4": "1234"
+          }
+        }
+      ],
+      "status": "completed",
+      "notes": "Customer bundle discount applied",
+      "receiptNumber": "RCP-001-20240201-001",
+      "createdAt": "2024-02-01T10:30:00.000Z",
+      "updatedAt": "2024-02-01T10:30:00.000Z",
+      "metadata": {
+        "paymentProcessor": "Stripe",
+        "customerSatisfaction": 5
+      }
+    },
+    {
+      "id": "transaction_002",
+      "businessId": "business_001",
+      "storeId": "store_002",
+      "cashierId": "user_004",
+      "customerId": null,
+      "items": [
+        {
+          "productId": "product_004",
+          "productName": "Samsung Galaxy S24 Ultra",
+          "variantId": "variant_006",
+          "variantName": "256GB Titanium Black",
+          "unitPrice": 1199.99,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 1199.99
+        }
+      ],
+      "subtotal": 1199.99,
+      "taxAmount": 105.00,
+      "discountAmount": 0.0,
+      "total": 1304.99,
+      "payments": [
+        {
+          "method": "cash",
+          "amount": 1304.99,
+          "reference": null,
+          "metadata": null
+        }
+      ],
+      "status": "completed",
+      "notes": null,
+      "receiptNumber": "RCP-002-20240201-002",
+      "createdAt": "2024-02-01T14:15:00.000Z",
+      "updatedAt": "2024-02-01T14:15:00.000Z",
+      "metadata": {
+        "customerType": "walk-in"
+      }
+    },
+    {
+      "id": "transaction_003",
+      "businessId": "business_002",
+      "storeId": "store_003",
+      "cashierId": "user_005",
+      "customerId": null,
+      "items": [
+        {
+          "productId": "product_005",
+          "productName": "Margherita Pizza",
+          "variantId": "variant_009",
+          "variantName": "Medium (12 inch)",
+          "unitPrice": 18.99,
+          "quantity": 2,
+          "discount": 0.0,
+          "total": 37.98
+        },
+        {
+          "productId": "product_006",
+          "productName": "Chicken Alfredo Pasta",
+          "variantId": null,
+          "variantName": null,
+          "unitPrice": 24.99,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 24.99
+        },
+        {
+          "productId": "product_007",
+          "productName": "Tiramisu",
+          "variantId": null,
+          "variantName": null,
+          "unitPrice": 8.99,
+          "quantity": 2,
+          "discount": 0.0,
+          "total": 17.98
+        }
+      ],
+      "subtotal": 80.95,
+      "taxAmount": 6.48,
+      "discountAmount": 0.0,
+      "total": 87.43,
+      "payments": [
+        {
+          "method": "card",
+          "amount": 87.43,
+          "reference": "card_txn_67890",
+          "metadata": {
+            "cardType": "Mastercard",
+            "last4": "5678"
+          }
+        }
+      ],
+      "status": "completed",
+      "notes": "Table 12, party of 4",
+      "receiptNumber": "RCP-003-20240201-003",
+      "createdAt": "2024-02-01T19:45:00.000Z",
+      "updatedAt": "2024-02-01T19:45:00.000Z",
+      "metadata": {
+        "tableNumber": 12,
+        "partySize": 4,
+        "serviceRating": 5
+      }
+    }
+  ]
+}

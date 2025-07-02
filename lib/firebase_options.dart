@@ -30,17 +30,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyBUhjUupXUN6yAgSqRf9Ipi-zMmU0_7ciE',
-    appId: '1:1030987145623:web:d9cd0f94444095b3e024d2',
+    appId: '1:1030987145623:web:486588da94e7193ae024d2',
     messagingSenderId: '1030987145623',
     projectId: 'arandas-ai',
     authDomain: 'arandas-ai.firebaseapp.com',
     storageBucket: 'arandas-ai.firebasestorage.app',
-    measurementId: 'G-6WGWYYNZRZ',
+    measurementId: 'G-HPDWBTV2PP',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCW9OaIdKIIo0OHjtvKgYk6xYLGZDnrGVc',
-    appId: '1:1030987145623:android:ba5553b4cd1f04efe024d2',
+    appId: '1:1030987145623:android:91291e002bb94bdce024d2',
     messagingSenderId: '1030987145623',
     projectId: 'arandas-ai',
     storageBucket: 'arandas-ai.firebasestorage.app',
@@ -48,17 +48,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyBUhjUupXUN6yAgSqRf9Ipi-zMmU0_7ciE',
-    appId: '1:1030987145623:web:08232d448d74f6ade024d2',
+    appId: '1:1030987145623:web:4bb3bafc37aaea6ce024d2',
     messagingSenderId: '1030987145623',
     projectId: 'arandas-ai',
     authDomain: 'arandas-ai.firebaseapp.com',
     storageBucket: 'arandas-ai.firebasestorage.app',
-    measurementId: 'G-HX59MVH4ZM',
+    measurementId: 'G-22YVH691KG',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBVngwIkTf_1SUpmBi2iZlJpZe-9-EmkbU',
-    appId: '1:1030987145623:ios:4bce93469e418806e024d2',
+    appId: '1:1030987145623:ios:6a1640bd6ae852b5e024d2',
     messagingSenderId: '1030987145623',
     projectId: 'arandas-ai',
     storageBucket: 'arandas-ai.firebasestorage.app',
@@ -68,7 +68,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBVngwIkTf_1SUpmBi2iZlJpZe-9-EmkbU',
-    appId: '1:1030987145623:ios:4bce93469e418806e024d2',
+    appId: '1:1030987145623:ios:6a1640bd6ae852b5e024d2',
     messagingSenderId: '1030987145623',
     projectId: 'arandas-ai',
     storageBucket: 'arandas-ai.firebasestorage.app',

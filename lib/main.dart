@@ -1,35 +1,84 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'firebase_options.dart';
-import 'app/routes/app_pages.dart';
-import 'app/bindings/app_bindings.dart';
+import 'routes/app_routes.dart';
+import 'services/firebase_service.dart';
+import 'services/security_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await GetStorage.init();
 
-  runApp(const MyApp());
+  // Initialize core services
+  await _initializeServices();
+
+  runApp(const POSApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<void> _initializeServices() async {
+  // Initialize Firebase Service
+  Get.put(FirebaseService(), permanent: true);
+
+  // Initialize Security Service
+  Get.put(SecurityService(), permanent: true);
+}
+
+class POSApp extends StatelessWidget {
+  const POSApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'POS System',
-      theme: ThemeData(primarySwatch: Colors.blue, visualDensity: VisualDensity.adaptivePlatformDensity),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2196F3),
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+        ),
+        cardTheme: CardThemeData(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2196F3),
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.system,
+      initialRoute: AppRoutes.splash,
+      getPages: AppRoutes.routes,
+      unknownRoute: GetPage(
+        name: '/notfound',
+        page: () => const Scaffold(
+          body: Center(
+            child: Text('Page not found'),
+          ),
+        ),
+      ),
     );
   }
 }
-
-// InitialBinding moved to app/bindings/app_bindings.dart
