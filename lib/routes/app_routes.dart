@@ -7,6 +7,7 @@ import '../views/products/products_view.dart';
 import '../views/transactions/transactions_view.dart';
 import '../views/stores/stores_view.dart';
 import '../views/settings/settings_view.dart';
+import '../views/admin/demo_data_view.dart';
 
 class AppRoutes {
   // Route names
@@ -18,6 +19,7 @@ class AppRoutes {
   static const String transactions = '/transactions';
   static const String stores = '/stores';
   static const String settings = '/settings';
+  static const String demoData = '/demo-data';
 
   // Route definitions
   static List<GetPage> routes = [
@@ -52,6 +54,10 @@ class AppRoutes {
     GetPage(
       name: settings,
       page: () => const SettingsView(),
+    ),
+    GetPage(
+      name: demoData,
+      page: () => const DemoDataView(),
     ),
   ];
 }

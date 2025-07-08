@@ -2,11 +2,13 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../services/firebase_service.dart';
 import '../services/security_service.dart';
+import '../services/error_handler_service.dart';
 import '../models/product_model.dart';
 
 class ProductController extends GetxController {
   final FirebaseService _firebaseService = Get.find<FirebaseService>();
   final SecurityService _securityService = Get.find<SecurityService>();
+  final ErrorHandlerService _errorHandler = Get.find<ErrorHandlerService>();
 
   // Observable states
   final RxBool isLoading = false.obs;
@@ -26,10 +28,10 @@ class ProductController extends GetxController {
   void onInit() {
     super.onInit();
     loadProducts();
-    
+
     // Listen to search query changes
     debounce(searchQuery, (_) => _filterProducts(), time: const Duration(milliseconds: 500));
-    
+
     // Listen to category changes
     ever(selectedCategory, (_) => _filterProducts());
   }
@@ -69,18 +71,16 @@ class ProductController extends GetxController {
       }
 
       final snapshot = await query.get();
-      
+
       if (snapshot.docs.isNotEmpty) {
-        final newProducts = snapshot.docs
-            .map((doc) => ProductModel.fromFirestore(doc))
-            .toList();
-        
+        final newProducts = snapshot.docs.map((doc) => ProductModel.fromFirestore(doc)).toList();
+
         if (refresh) {
           products.value = newProducts;
         } else {
           products.addAll(newProducts);
         }
-        
+
         _lastDocument = snapshot.docs.last;
         hasMoreProducts.value = snapshot.docs.length == _pageSize;
       } else {
@@ -89,15 +89,14 @@ class ProductController extends GetxController {
 
       // Update categories
       _updateCategories();
-      
+
       // Apply current filters
       _filterProducts();
-
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to load products: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Load Products',
+        metadata: {'refresh': refresh, 'hasMore': hasMoreProducts.value},
       );
     } finally {
       isLoading.value = false;
@@ -121,7 +120,7 @@ class ProductController extends GetxController {
       );
 
       await _firebaseService.addDocument('products', productData.toMap());
-      
+
       Get.snackbar(
         'Success',
         'Product added successfully',
@@ -131,12 +130,11 @@ class ProductController extends GetxController {
       // Refresh products list
       await loadProducts(refresh: true);
       return true;
-
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to add product: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Add Product',
+        metadata: {'productName': product.name, 'categoryId': product.categoryId},
       );
       return false;
     } finally {
@@ -178,12 +176,11 @@ class ProductController extends GetxController {
       }
 
       return true;
-
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to update product: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Update Product',
+        metadata: {'productId': product.id, 'productName': product.name},
       );
       return false;
     } finally {
@@ -221,12 +218,11 @@ class ProductController extends GetxController {
       _filterProducts();
 
       return true;
-
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to delete product: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Delete Product',
+        metadata: {'productId': productId},
       );
       return false;
     } finally {
@@ -262,12 +258,11 @@ class ProductController extends GetxController {
       }
 
       return true;
-
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to update stock: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Update Stock',
+        metadata: {'productId': productId, 'newQuantity': newQuantity},
       );
       return false;
     }
@@ -290,9 +285,9 @@ class ProductController extends GetxController {
       final query = searchQuery.value.toLowerCase();
       filtered = filtered.where((product) {
         return product.name.toLowerCase().contains(query) ||
-               product.description.toLowerCase().contains(query) ||
-               (product.sku?.toLowerCase().contains(query) ?? false) ||
-               (product.barcode?.toLowerCase().contains(query) ?? false);
+            product.description.toLowerCase().contains(query) ||
+            (product.sku?.toLowerCase().contains(query) ?? false) ||
+            (product.barcode?.toLowerCase().contains(query) ?? false);
       }).toList();
     }
 
@@ -312,15 +307,14 @@ class ProductController extends GetxController {
         .map((product) => product.categoryId)
         .toSet()
         .toList();
-    
+
     categories.value = ['All', ...productCategories];
   }
 
   void _showPermissionDenied() {
-    Get.snackbar(
-      'Access Denied',
-      'You do not have permission to perform this action.',
-      snackPosition: SnackPosition.BOTTOM,
+    _errorHandler.handlePermissionError(
+      'Product Management',
+      metadata: {'userId': _securityService.currentUserId},
     );
   }
 

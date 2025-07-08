@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'controllers/auth_controller.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
 import 'services/firebase_service.dart';
 import 'services/security_service.dart';
+import 'services/logger_service.dart';
+import 'services/performance_service.dart';
+import 'services/error_handler_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,11 +25,24 @@ void main() async {
 }
 
 Future<void> _initializeServices() async {
+  // Initialize Logger Service first
+  Get.put(LoggerService(), permanent: true);
+
+  // Initialize Performance Service
+  Get.put(PerformanceService(), permanent: true);
+
+  // Initialize Error Handler Service
+  Get.put(ErrorHandlerService(), permanent: true);
+
   // Initialize Firebase Service
   Get.put(FirebaseService(), permanent: true);
 
   // Initialize Security Service
   Get.put(SecurityService(), permanent: true);
+
+  // Log successful initialization
+  final logger = Get.find<LoggerService>();
+  logger.info('Core services initialized successfully');
 }
 
 class POSApp extends StatelessWidget {
@@ -33,6 +50,8 @@ class POSApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AuthController());
+
     return GetMaterialApp(
       title: 'POS System',
       debugShowCheckedModeBanner: false,

@@ -1,710 +1,649 @@
 {
-  "businesses": [
-    {
-      "id": "business_001",
-      "name": "TechMart Electronics",
-      "description": "Premium electronics and gadgets retailer",
-      "type": "retail",
-      "ownerId": "user_001",
-      "email": "owner@techmart.com",
-      "phone": "+1-555-0123",
-      "address": "123 Tech Street",
-      "city": "San Francisco",
-      "state": "CA",
-      "country": "USA",
-      "postalCode": "94105",
-      "currency": "USD",
-      "timezone": "America/Los_Angeles",
-      "logoUrl": "https://example.com/logos/techmart.png",
-      "isActive": true,
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z",
-      "settings": {
-        "taxRate": 0.0875,
-        "receiptFooter": "Thank you for shopping with TechMart!",
-        "allowReturns": true,
-        "returnPeriodDays": 30
-      }
-    },
-    {
-      "id": "business_002",
-      "name": "Bella's Bistro",
-      "description": "Authentic Italian restaurant with fresh ingredients",
-      "type": "restaurant",
-      "ownerId": "user_005",
-      "email": "info@bellasbistro.com",
-      "phone": "+1-555-0456",
-      "address": "456 Culinary Ave",
-      "city": "New York",
-      "state": "NY",
-      "country": "USA",
-      "postalCode": "10001",
-      "currency": "USD",
-      "timezone": "America/New_York",
-      "logoUrl": "https://example.com/logos/bellas.png",
-      "isActive": true,
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z",
-      "settings": {
-        "taxRate": 0.08,
-        "serviceChargeRate": 0.18,
-        "acceptReservations": true,
-        "maxTableSize": 8
-      }
-    }
-  ],
+  "metadata": {
+    "generatedAt": "2025-07-08T12:00:00.000Z",
+    "version": "1.0.0",
+    "description": "Comprehensive demo data for POS system testing and demonstration",
+    "totalUsers": 4,
+    "totalStores": 3,
+    "totalProducts": 8,
+    "totalTransactions": 6,
+    "businessIds": ["demo_business_001", "demo_business_002"]
+  },
   "users": [
     {
-      "id": "user_001",
-      "email": "john.doe@techmart.com",
+      "email": "admin@demo.com",
       "firstName": "John",
-      "lastName": "Doe",
+      "lastName": "Administrator",
       "role": "admin",
-      "businessId": "business_001",
-      "storeId": null,
+      "businessId": "demo_business_001",
       "isActive": true,
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z",
       "metadata": {
-        "phoneNumber": "+1-555-0123",
-        "hireDate": "2024-01-01",
-        "department": "Management"
+        "loginCount": 150,
+        "lastLoginIp": "192.168.1.100",
+        "preferredLanguage": "en"
       }
     },
     {
-      "id": "user_002",
-      "email": "sarah.manager@techmart.com",
+      "email": "manager@demo.com",
       "firstName": "Sarah",
-      "lastName": "Johnson",
+      "lastName": "Manager",
       "role": "manager",
-      "businessId": "business_001",
-      "storeId": "store_001",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
       "isActive": true,
-      "createdAt": "2024-01-02T00:00:00.000Z",
-      "updatedAt": "2024-01-02T00:00:00.000Z",
       "metadata": {
-        "phoneNumber": "+1-555-0124",
-        "hireDate": "2024-01-02",
-        "department": "Store Operations"
+        "loginCount": 89,
+        "lastLoginIp": "192.168.1.101",
+        "preferredLanguage": "en"
       }
     },
     {
-      "id": "user_003",
-      "email": "mike.cashier@techmart.com",
+      "email": "cashier1@demo.com",
       "firstName": "Mike",
-      "lastName": "Wilson",
+      "lastName": "Johnson",
       "role": "cashier",
-      "businessId": "business_001",
-      "storeId": "store_001",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
       "isActive": true,
-      "createdAt": "2024-01-03T00:00:00.000Z",
-      "updatedAt": "2024-01-03T00:00:00.000Z",
       "metadata": {
-        "phoneNumber": "+1-555-0125",
-        "hireDate": "2024-01-03",
-        "shift": "morning"
+        "loginCount": 45,
+        "lastLoginIp": "192.168.1.102",
+        "preferredLanguage": "en"
       }
     },
     {
-      "id": "user_004",
-      "email": "lisa.cashier@techmart.com",
-      "firstName": "Lisa",
-      "lastName": "Brown",
+      "email": "cashier2@demo.com",
+      "firstName": "Emily",
+      "lastName": "Davis",
       "role": "cashier",
-      "businessId": "business_001",
-      "storeId": "store_002",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_002",
       "isActive": true,
-      "createdAt": "2024-01-04T00:00:00.000Z",
-      "updatedAt": "2024-01-04T00:00:00.000Z",
       "metadata": {
-        "phoneNumber": "+1-555-0126",
-        "hireDate": "2024-01-04",
-        "shift": "evening"
-      }
-    },
-    {
-      "id": "user_005",
-      "email": "bella@bellasbistro.com",
-      "firstName": "Isabella",
-      "lastName": "Romano",
-      "role": "admin",
-      "businessId": "business_002",
-      "storeId": null,
-      "isActive": true,
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z",
-      "metadata": {
-        "phoneNumber": "+1-555-0456",
-        "hireDate": "2024-01-15",
-        "department": "Owner/Chef"
+        "loginCount": 32,
+        "lastLoginIp": "192.168.1.103",
+        "preferredLanguage": "en"
       }
     }
   ],
   "stores": [
     {
-      "id": "store_001",
-      "name": "TechMart Downtown",
-      "description": "Main flagship store in downtown San Francisco",
-      "businessId": "business_001",
-      "managerId": "user_002",
-      "address": "123 Tech Street",
-      "city": "San Francisco",
+      "name": "Downtown Main Store",
+      "description": "Our flagship store in the heart of downtown",
+      "businessId": "demo_business_001",
+      "managerId": "manager_user_001",
+      "address": "123 Main Street",
+      "city": "Anytown",
       "state": "CA",
       "country": "USA",
-      "postalCode": "94105",
+      "postalCode": "12345",
       "phone": "+1-555-0123",
-      "email": "downtown@techmart.com",
+      "email": "downtown@demo.com",
       "isActive": true,
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z",
       "settings": {
-        "openingHours": {
-          "monday": "09:00-21:00",
-          "tuesday": "09:00-21:00",
-          "wednesday": "09:00-21:00",
-          "thursday": "09:00-21:00",
-          "friday": "09:00-22:00",
-          "saturday": "10:00-22:00",
-          "sunday": "11:00-20:00"
-        },
-        "maxCapacity": 100,
-        "hasWarehouse": true
+        "taxRate": 0.0875,
+        "currency": "USD",
+        "timezone": "America/Los_Angeles",
+        "receiptFooter": "Thank you for shopping with us!",
+        "allowReturns": true,
+        "returnPeriodDays": 30
       }
     },
     {
-      "id": "store_002",
-      "name": "TechMart Mall",
-      "description": "Shopping mall location with high foot traffic",
-      "businessId": "business_001",
-      "managerId": "user_002",
-      "address": "789 Mall Plaza",
-      "city": "San Francisco",
+      "name": "Mall Location",
+      "description": "Convenient shopping mall location",
+      "businessId": "demo_business_001",
+      "managerId": "manager_user_001",
+      "address": "456 Shopping Center Blvd",
+      "city": "Anytown",
       "state": "CA",
       "country": "USA",
-      "postalCode": "94102",
-      "phone": "+1-555-0127",
-      "email": "mall@techmart.com",
+      "postalCode": "12346",
+      "phone": "+1-555-0124",
+      "email": "mall@demo.com",
       "isActive": true,
-      "createdAt": "2024-01-05T00:00:00.000Z",
-      "updatedAt": "2024-01-05T00:00:00.000Z",
       "settings": {
-        "openingHours": {
-          "monday": "10:00-21:00",
-          "tuesday": "10:00-21:00",
-          "wednesday": "10:00-21:00",
-          "thursday": "10:00-21:00",
-          "friday": "10:00-22:00",
-          "saturday": "10:00-22:00",
-          "sunday": "11:00-20:00"
-        },
-        "maxCapacity": 75,
-        "hasWarehouse": false
+        "taxRate": 0.0875,
+        "currency": "USD",
+        "timezone": "America/Los_Angeles",
+        "receiptFooter": "Visit us again soon!",
+        "allowReturns": true,
+        "returnPeriodDays": 30
       }
     },
     {
-      "id": "store_003",
-      "name": "Bella's Bistro Main",
-      "description": "Main restaurant location",
-      "businessId": "business_002",
-      "managerId": "user_005",
-      "address": "456 Culinary Ave",
-      "city": "New York",
-      "state": "NY",
+      "name": "Outlet Store",
+      "description": "Discounted items and clearance sales",
+      "businessId": "demo_business_001",
+      "managerId": "manager_user_001",
+      "address": "789 Outlet Drive",
+      "city": "Anytown",
+      "state": "CA",
       "country": "USA",
-      "postalCode": "10001",
-      "phone": "+1-555-0456",
-      "email": "main@bellasbistro.com",
+      "postalCode": "12347",
+      "phone": "+1-555-0125",
+      "email": "outlet@demo.com",
       "isActive": true,
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z",
       "settings": {
-        "openingHours": {
-          "monday": "17:00-23:00",
-          "tuesday": "17:00-23:00",
-          "wednesday": "17:00-23:00",
-          "thursday": "17:00-23:00",
-          "friday": "17:00-24:00",
-          "saturday": "17:00-24:00",
-          "sunday": "16:00-22:00"
-        },
-        "seatingCapacity": 60,
-        "hasKitchen": true,
-        "acceptsReservations": true
+        "taxRate": 0.0875,
+        "currency": "USD",
+        "timezone": "America/Los_Angeles",
+        "receiptFooter": "Great deals every day!",
+        "allowReturns": false,
+        "returnPeriodDays": 0
       }
     }
   ],
   "products": [
     {
-      "id": "product_001",
-      "name": "iPhone 15 Pro",
-      "description": "Latest Apple iPhone with Pro camera system",
-      "businessId": "business_001",
-      "storeId": "store_001",
-      "categoryId": "cat_smartphones",
-      "type": "variable",
-      "price": 999.99,
-      "costPrice": 750.00,
-      "sku": "IPHONE15PRO",
-      "barcode": "123456789012",
+      "name": "Wireless Bluetooth Headphones",
+      "description": "High-quality wireless headphones with noise cancellation",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "categoryId": "electronics",
+      "type": "simple",
+      "price": 199.99,
+      "costPrice": 120.00,
+      "sku": "WBH-001",
+      "barcode": "1234567890123",
       "imageUrls": [
-        "https://example.com/products/iphone15pro_1.jpg",
-        "https://example.com/products/iphone15pro_2.jpg"
+        "https://example.com/images/headphones1.jpg",
+        "https://example.com/images/headphones2.jpg"
       ],
-      "stockQuantity": 25,
+      "stockQuantity": 45,
+      "lowStockThreshold": 10,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "brand": "TechSound",
+        "warranty": "2 years",
+        "weight": "250g"
+      }
+    },
+    {
+      "name": "Smartphone Case",
+      "description": "Protective case for smartphones",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "categoryId": "accessories",
+      "type": "variable",
+      "price": 24.99,
+      "costPrice": 8.00,
+      "sku": "SC-VAR",
+      "barcode": "1234567890124",
+      "imageUrls": [
+        "https://example.com/images/case1.jpg"
+      ],
+      "stockQuantity": 0,
       "lowStockThreshold": 5,
       "trackInventory": true,
       "isActive": true,
       "variants": [
         {
           "id": "variant_001",
-          "name": "128GB Natural Titanium",
-          "price": 999.99,
-          "sku": "IPHONE15PRO-128-NT",
-          "stockQuantity": 10,
+          "name": "iPhone 15 Case - Clear",
+          "price": 24.99,
+          "sku": "SC-IP15-CLR",
+          "stockQuantity": 25,
           "attributes": {
-            "storage": "128GB",
-            "color": "Natural Titanium"
+            "phone_model": "iPhone 15",
+            "color": "Clear",
+            "material": "TPU"
           }
         },
         {
           "id": "variant_002",
-          "name": "256GB Blue Titanium",
-          "price": 1099.99,
-          "sku": "IPHONE15PRO-256-BT",
-          "stockQuantity": 8,
+          "name": "iPhone 15 Case - Black",
+          "price": 24.99,
+          "sku": "SC-IP15-BLK",
+          "stockQuantity": 18,
           "attributes": {
-            "storage": "256GB",
-            "color": "Blue Titanium"
+            "phone_model": "iPhone 15",
+            "color": "Black",
+            "material": "TPU"
           }
         },
         {
           "id": "variant_003",
-          "name": "512GB White Titanium",
-          "price": 1299.99,
-          "sku": "IPHONE15PRO-512-WT",
-          "stockQuantity": 7,
+          "name": "Samsung Galaxy S24 Case - Clear",
+          "price": 22.99,
+          "sku": "SC-S24-CLR",
+          "stockQuantity": 12,
           "attributes": {
-            "storage": "512GB",
-            "color": "White Titanium"
+            "phone_model": "Samsung Galaxy S24",
+            "color": "Clear",
+            "material": "TPU"
           }
         }
       ],
       "metadata": {
-        "brand": "Apple",
-        "warranty": "1 year",
-        "category": "Smartphones"
-      },
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+        "brand": "ProtectPro",
+        "dropProtection": "6 feet"
+      }
     },
     {
-      "id": "product_002",
-      "name": "MacBook Air M3",
-      "description": "Ultra-thin laptop with M3 chip",
-      "businessId": "business_001",
-      "storeId": "store_001",
-      "categoryId": "cat_laptops",
+      "name": "Cotton T-Shirt",
+      "description": "Comfortable 100% cotton t-shirt",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "categoryId": "clothing",
       "type": "variable",
-      "price": 1299.99,
-      "costPrice": 950.00,
-      "sku": "MACBOOKAIR-M3",
-      "barcode": "123456789013",
+      "price": 19.99,
+      "costPrice": 7.50,
+      "sku": "CT-VAR",
+      "barcode": "1234567890125",
       "imageUrls": [
-        "https://example.com/products/macbookair_1.jpg"
+        "https://example.com/images/tshirt1.jpg",
+        "https://example.com/images/tshirt2.jpg"
       ],
-      "stockQuantity": 15,
-      "lowStockThreshold": 3,
+      "stockQuantity": 0,
+      "lowStockThreshold": 10,
       "trackInventory": true,
       "isActive": true,
       "variants": [
         {
           "id": "variant_004",
-          "name": "13-inch 8GB/256GB Silver",
-          "price": 1299.99,
-          "sku": "MBA-M3-8-256-SLV",
-          "stockQuantity": 8,
+          "name": "Cotton T-Shirt - Small - White",
+          "price": 19.99,
+          "sku": "CT-S-WHT",
+          "stockQuantity": 30,
           "attributes": {
-            "screen": "13-inch",
-            "ram": "8GB",
-            "storage": "256GB",
-            "color": "Silver"
+            "size": "Small",
+            "color": "White",
+            "material": "100% Cotton"
           }
         },
         {
           "id": "variant_005",
-          "name": "13-inch 16GB/512GB Space Gray",
-          "price": 1699.99,
-          "sku": "MBA-M3-16-512-SG",
-          "stockQuantity": 7,
+          "name": "Cotton T-Shirt - Medium - White",
+          "price": 19.99,
+          "sku": "CT-M-WHT",
+          "stockQuantity": 25,
           "attributes": {
-            "screen": "13-inch",
-            "ram": "16GB",
-            "storage": "512GB",
-            "color": "Space Gray"
+            "size": "Medium",
+            "color": "White",
+            "material": "100% Cotton"
+          }
+        },
+        {
+          "id": "variant_006",
+          "name": "Cotton T-Shirt - Large - Black",
+          "price": 19.99,
+          "sku": "CT-L-BLK",
+          "stockQuantity": 22,
+          "attributes": {
+            "size": "Large",
+            "color": "Black",
+            "material": "100% Cotton"
           }
         }
       ],
       "metadata": {
-        "brand": "Apple",
-        "warranty": "1 year",
-        "category": "Laptops"
-      },
-      "createdAt": "2024-01-02T00:00:00.000Z",
-      "updatedAt": "2024-01-02T00:00:00.000Z"
+        "brand": "ComfortWear",
+        "careInstructions": "Machine wash cold"
+      }
     },
     {
-      "id": "product_003",
-      "name": "AirPods Pro (3rd Gen)",
-      "description": "Wireless earbuds with active noise cancellation",
-      "businessId": "business_001",
-      "storeId": "store_001",
-      "categoryId": "cat_audio",
+      "name": "Premium Coffee Beans",
+      "description": "Freshly roasted arabica coffee beans",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_002",
+      "categoryId": "food_beverage",
       "type": "simple",
-      "price": 249.99,
-      "costPrice": 180.00,
-      "sku": "AIRPODS-PRO-3",
-      "barcode": "123456789014",
+      "price": 14.99,
+      "costPrice": 6.00,
+      "sku": "PCB-001",
+      "barcode": "1234567890126",
       "imageUrls": [
-        "https://example.com/products/airpods_pro.jpg"
+        "https://example.com/images/coffee1.jpg"
       ],
-      "stockQuantity": 50,
+      "stockQuantity": 60,
+      "lowStockThreshold": 15,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "origin": "Colombia",
+        "roastLevel": "Medium",
+        "weight": "12oz",
+        "expiryDays": 365
+      }
+    },
+    {
+      "name": "Tech Support Service",
+      "description": "1-hour technical support consultation",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "categoryId": "services",
+      "type": "service",
+      "price": 75.00,
+      "costPrice": 30.00,
+      "sku": "TSS-001",
+      "stockQuantity": 0,
+      "trackInventory": false,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "duration": "60 minutes",
+        "expertise": "General IT Support",
+        "remote": true
+      }
+    },
+    {
+      "name": "Wireless Mouse",
+      "description": "Ergonomic wireless mouse with USB receiver",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "categoryId": "electronics",
+      "type": "simple",
+      "price": 29.99,
+      "costPrice": 12.00,
+      "sku": "WM-001",
+      "barcode": "1234567890127",
+      "imageUrls": [
+        "https://example.com/images/mouse1.jpg"
+      ],
+      "stockQuantity": 35,
+      "lowStockThreshold": 8,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "brand": "TechMouse",
+        "batteryLife": "12 months",
+        "dpi": "1600"
+      }
+    },
+    {
+      "name": "Energy Drink",
+      "description": "Refreshing energy drink with natural caffeine",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_002",
+      "categoryId": "food_beverage",
+      "type": "simple",
+      "price": 2.99,
+      "costPrice": 1.20,
+      "sku": "ED-001",
+      "barcode": "1234567890128",
+      "imageUrls": [
+        "https://example.com/images/energy1.jpg"
+      ],
+      "stockQuantity": 120,
+      "lowStockThreshold": 30,
+      "trackInventory": true,
+      "isActive": true,
+      "variants": [],
+      "metadata": {
+        "brand": "PowerBoost",
+        "flavor": "Tropical",
+        "volume": "16 fl oz",
+        "caffeine": "80mg"
+      }
+    },
+    {
+      "name": "Notebook Set",
+      "description": "Set of 3 premium notebooks with lined pages",
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_003",
+      "categoryId": "stationery",
+      "type": "simple",
+      "price": 12.99,
+      "costPrice": 4.50,
+      "sku": "NB-SET-001",
+      "barcode": "1234567890129",
+      "imageUrls": [
+        "https://example.com/images/notebook1.jpg"
+      ],
+      "stockQuantity": 8,
       "lowStockThreshold": 10,
       "trackInventory": true,
       "isActive": true,
       "variants": [],
       "metadata": {
-        "brand": "Apple",
-        "warranty": "1 year",
-        "category": "Audio"
-      },
-      "createdAt": "2024-01-03T00:00:00.000Z",
-      "updatedAt": "2024-01-03T00:00:00.000Z"
-    },
-    {
-      "id": "product_004",
-      "name": "Samsung Galaxy S24 Ultra",
-      "description": "Premium Android smartphone with S Pen",
-      "businessId": "business_001",
-      "storeId": "store_002",
-      "categoryId": "cat_smartphones",
-      "type": "variable",
-      "price": 1199.99,
-      "costPrice": 850.00,
-      "sku": "GALAXY-S24-ULTRA",
-      "barcode": "123456789015",
-      "imageUrls": [
-        "https://example.com/products/galaxy_s24.jpg"
-      ],
-      "stockQuantity": 20,
-      "lowStockThreshold": 5,
-      "trackInventory": true,
-      "isActive": true,
-      "variants": [
-        {
-          "id": "variant_006",
-          "name": "256GB Titanium Black",
-          "price": 1199.99,
-          "sku": "GS24U-256-TB",
-          "stockQuantity": 12,
-          "attributes": {
-            "storage": "256GB",
-            "color": "Titanium Black"
-          }
-        },
-        {
-          "id": "variant_007",
-          "name": "512GB Titanium Violet",
-          "price": 1399.99,
-          "sku": "GS24U-512-TV",
-          "stockQuantity": 8,
-          "attributes": {
-            "storage": "512GB",
-            "color": "Titanium Violet"
-          }
-        }
-      ],
-      "metadata": {
-        "brand": "Samsung",
-        "warranty": "1 year",
-        "category": "Smartphones"
-      },
-      "createdAt": "2024-01-04T00:00:00.000Z",
-      "updatedAt": "2024-01-04T00:00:00.000Z"
-    },
-    {
-      "id": "product_005",
-      "name": "Margherita Pizza",
-      "description": "Classic pizza with fresh mozzarella, tomato sauce, and basil",
-      "businessId": "business_002",
-      "storeId": "store_003",
-      "categoryId": "cat_pizza",
-      "type": "variable",
-      "price": 18.99,
-      "costPrice": 6.50,
-      "sku": "PIZZA-MARG",
-      "barcode": null,
-      "imageUrls": [
-        "https://example.com/products/margherita.jpg"
-      ],
-      "stockQuantity": 0,
-      "lowStockThreshold": null,
-      "trackInventory": false,
-      "isActive": true,
-      "variants": [
-        {
-          "id": "variant_008",
-          "name": "Small (10 inch)",
-          "price": 14.99,
-          "sku": "PIZZA-MARG-S",
-          "stockQuantity": 0,
-          "attributes": {
-            "size": "Small",
-            "diameter": "10 inch"
-          }
-        },
-        {
-          "id": "variant_009",
-          "name": "Medium (12 inch)",
-          "price": 18.99,
-          "sku": "PIZZA-MARG-M",
-          "stockQuantity": 0,
-          "attributes": {
-            "size": "Medium",
-            "diameter": "12 inch"
-          }
-        },
-        {
-          "id": "variant_010",
-          "name": "Large (14 inch)",
-          "price": 22.99,
-          "sku": "PIZZA-MARG-L",
-          "stockQuantity": 0,
-          "attributes": {
-            "size": "Large",
-            "diameter": "14 inch"
-          }
-        }
-      ],
-      "metadata": {
-        "category": "Pizza",
-        "dietary": ["vegetarian"],
-        "prepTime": "15 minutes"
-      },
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z"
-    },
-    {
-      "id": "product_006",
-      "name": "Chicken Alfredo Pasta",
-      "description": "Creamy fettuccine with grilled chicken and parmesan",
-      "businessId": "business_002",
-      "storeId": "store_003",
-      "categoryId": "cat_pasta",
-      "type": "simple",
-      "price": 24.99,
-      "costPrice": 8.50,
-      "sku": "PASTA-CHICK-ALF",
-      "barcode": null,
-      "imageUrls": [
-        "https://example.com/products/chicken_alfredo.jpg"
-      ],
-      "stockQuantity": 0,
-      "lowStockThreshold": null,
-      "trackInventory": false,
-      "isActive": true,
-      "variants": [],
-      "metadata": {
-        "category": "Pasta",
-        "dietary": ["gluten"],
-        "prepTime": "20 minutes"
-      },
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z"
-    },
-    {
-      "id": "product_007",
-      "name": "Tiramisu",
-      "description": "Traditional Italian dessert with coffee and mascarpone",
-      "businessId": "business_002",
-      "storeId": "store_003",
-      "categoryId": "cat_desserts",
-      "type": "simple",
-      "price": 8.99,
-      "costPrice": 3.00,
-      "sku": "DESSERT-TIRAMISU",
-      "barcode": null,
-      "imageUrls": [
-        "https://example.com/products/tiramisu.jpg"
-      ],
-      "stockQuantity": 12,
-      "lowStockThreshold": 3,
-      "trackInventory": true,
-      "isActive": true,
-      "variants": [],
-      "metadata": {
-        "category": "Desserts",
-        "dietary": ["vegetarian", "contains_alcohol"],
-        "prepTime": "5 minutes"
-      },
-      "createdAt": "2024-01-15T00:00:00.000Z",
-      "updatedAt": "2024-01-15T00:00:00.000Z"
+        "brand": "WriteWell",
+        "pageCount": 200,
+        "paperType": "Ruled",
+        "set": true
+      }
     }
   ],
   "transactions": [
     {
-      "id": "transaction_001",
-      "businessId": "business_001",
-      "storeId": "store_001",
-      "cashierId": "user_003",
-      "customerId": null,
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "cashierId": "cashier_user_001",
       "items": [
         {
-          "productId": "product_003",
-          "productName": "AirPods Pro (3rd Gen)",
-          "variantId": null,
-          "variantName": null,
-          "unitPrice": 249.99,
+          "productId": "product_001",
+          "productName": "Wireless Bluetooth Headphones",
+          "unitPrice": 199.99,
           "quantity": 1,
           "discount": 0.0,
-          "total": 249.99
+          "total": 199.99
         },
         {
-          "productId": "product_001",
-          "productName": "iPhone 15 Pro",
-          "variantId": "variant_001",
-          "variantName": "128GB Natural Titanium",
-          "unitPrice": 999.99,
-          "quantity": 1,
-          "discount": 50.0,
-          "total": 949.99
+          "productId": "product_006",
+          "productName": "Wireless Mouse",
+          "unitPrice": 29.99,
+          "quantity": 2,
+          "discount": 5.00,
+          "total": 54.98
         }
       ],
-      "subtotal": 1199.98,
-      "taxAmount": 105.00,
-      "discountAmount": 50.0,
-      "total": 1254.98,
+      "subtotal": 254.97,
+      "taxAmount": 22.31,
+      "discountAmount": 5.00,
+      "total": 272.28,
       "payments": [
         {
           "method": "card",
-          "amount": 1254.98,
-          "reference": "card_txn_12345",
+          "amount": 272.28,
+          "reference": "CARD_****1234",
           "metadata": {
             "cardType": "Visa",
-            "last4": "1234"
+            "approvalCode": "ABC123"
           }
         }
       ],
       "status": "completed",
-      "notes": "Customer bundle discount applied",
-      "receiptNumber": "RCP-001-20240201-001",
-      "createdAt": "2024-02-01T10:30:00.000Z",
-      "updatedAt": "2024-02-01T10:30:00.000Z",
+      "receiptNumber": "RCP-001-1720440000000",
       "metadata": {
-        "paymentProcessor": "Stripe",
-        "customerSatisfaction": 5
+        "customerSatisfaction": 5,
+        "returnEligible": true
       }
     },
     {
-      "id": "transaction_002",
-      "businessId": "business_001",
-      "storeId": "store_002",
-      "cashierId": "user_004",
-      "customerId": null,
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_002",
+      "cashierId": "cashier_user_002",
       "items": [
         {
           "productId": "product_004",
-          "productName": "Samsung Galaxy S24 Ultra",
-          "variantId": "variant_006",
-          "variantName": "256GB Titanium Black",
-          "unitPrice": 1199.99,
-          "quantity": 1,
+          "productName": "Premium Coffee Beans",
+          "unitPrice": 14.99,
+          "quantity": 2,
           "discount": 0.0,
-          "total": 1199.99
+          "total": 29.98
+        },
+        {
+          "productId": "product_007",
+          "productName": "Energy Drink",
+          "unitPrice": 2.99,
+          "quantity": 3,
+          "discount": 0.0,
+          "total": 8.97
         }
       ],
-      "subtotal": 1199.99,
-      "taxAmount": 105.00,
+      "subtotal": 38.95,
+      "taxAmount": 3.41,
       "discountAmount": 0.0,
-      "total": 1304.99,
+      "total": 42.36,
       "payments": [
         {
           "method": "cash",
-          "amount": 1304.99,
-          "reference": null,
-          "metadata": null
+          "amount": 50.00,
+          "reference": "CASH",
+          "metadata": {
+            "changeGiven": 7.64
+          }
         }
       ],
       "status": "completed",
-      "notes": null,
-      "receiptNumber": "RCP-002-20240201-002",
-      "createdAt": "2024-02-01T14:15:00.000Z",
-      "updatedAt": "2024-02-01T14:15:00.000Z",
+      "receiptNumber": "RCP-002-1720440000000",
       "metadata": {
-        "customerType": "walk-in"
+        "customerSatisfaction": 4,
+        "returnEligible": true
       }
     },
     {
-      "id": "transaction_003",
-      "businessId": "business_002",
-      "storeId": "store_003",
-      "cashierId": "user_005",
-      "customerId": null,
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "cashierId": "cashier_user_001",
       "items": [
         {
-          "productId": "product_005",
-          "productName": "Margherita Pizza",
-          "variantId": "variant_009",
-          "variantName": "Medium (12 inch)",
-          "unitPrice": 18.99,
-          "quantity": 2,
-          "discount": 0.0,
-          "total": 37.98
-        },
-        {
-          "productId": "product_006",
-          "productName": "Chicken Alfredo Pasta",
-          "variantId": null,
-          "variantName": null,
+          "productId": "product_002",
+          "productName": "Smartphone Case",
+          "variantId": "variant_001",
+          "variantName": "iPhone 15 Case - Clear",
           "unitPrice": 24.99,
           "quantity": 1,
           "discount": 0.0,
           "total": 24.99
         },
         {
-          "productId": "product_007",
-          "productName": "Tiramisu",
-          "variantId": null,
-          "variantName": null,
-          "unitPrice": 8.99,
+          "productId": "product_003",
+          "productName": "Cotton T-Shirt",
+          "variantId": "variant_005",
+          "variantName": "Cotton T-Shirt - Medium - White",
+          "unitPrice": 19.99,
           "quantity": 2,
-          "discount": 0.0,
-          "total": 17.98
+          "discount": 4.00,
+          "total": 35.98
         }
       ],
-      "subtotal": 80.95,
-      "taxAmount": 6.48,
-      "discountAmount": 0.0,
-      "total": 87.43,
+      "subtotal": 60.97,
+      "taxAmount": 5.33,
+      "discountAmount": 4.00,
+      "total": 62.30,
       "payments": [
         {
-          "method": "card",
-          "amount": 87.43,
-          "reference": "card_txn_67890",
+          "method": "digitalWallet",
+          "amount": 62.30,
+          "reference": "APPLE_PAY_****5678",
           "metadata": {
-            "cardType": "Mastercard",
-            "last4": "5678"
+            "walletType": "Apple Pay",
+            "deviceId": "iPhone_ABC123"
           }
         }
       ],
       "status": "completed",
-      "notes": "Table 12, party of 4",
-      "receiptNumber": "RCP-003-20240201-003",
-      "createdAt": "2024-02-01T19:45:00.000Z",
-      "updatedAt": "2024-02-01T19:45:00.000Z",
+      "receiptNumber": "RCP-003-1720440000000",
       "metadata": {
-        "tableNumber": 12,
-        "partySize": 4,
-        "serviceRating": 5
+        "customerSatisfaction": 5,
+        "returnEligible": true
+      }
+    },
+    {
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "cashierId": "manager_user_001",
+      "items": [
+        {
+          "productId": "product_005",
+          "productName": "Tech Support Service",
+          "unitPrice": 75.00,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 75.00
+        }
+      ],
+      "subtotal": 75.00,
+      "taxAmount": 6.56,
+      "discountAmount": 0.0,
+      "total": 81.56,
+      "payments": [
+        {
+          "method": "card",
+          "amount": 81.56,
+          "reference": "CARD_****9012",
+          "metadata": {
+            "cardType": "MasterCard",
+            "approvalCode": "DEF456"
+          }
+        }
+      ],
+      "status": "completed",
+      "notes": "Customer needed help setting up new laptop",
+      "receiptNumber": "RCP-004-1720440000000",
+      "metadata": {
+        "serviceCompleted": true,
+        "technician": "John Tech",
+        "duration": 45
+      }
+    },
+    {
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_003",
+      "cashierId": "cashier_user_001",
+      "items": [
+        {
+          "productId": "product_008",
+          "productName": "Notebook Set",
+          "unitPrice": 12.99,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 12.99
+        }
+      ],
+      "subtotal": 12.99,
+      "taxAmount": 1.14,
+      "discountAmount": 0.0,
+      "total": 14.13,
+      "payments": [],
+      "status": "pending",
+      "receiptNumber": "RCP-005-1720440000000",
+      "metadata": {
+        "holdReason": "Customer went to get cash"
+      }
+    },
+    {
+      "businessId": "demo_business_001",
+      "storeId": "demo_store_001",
+      "cashierId": "cashier_user_001",
+      "items": [
+        {
+          "productId": "product_006",
+          "productName": "Wireless Mouse",
+          "unitPrice": 29.99,
+          "quantity": 1,
+          "discount": 0.0,
+          "total": 29.99
+        }
+      ],
+      "subtotal": 29.99,
+      "taxAmount": 2.62,
+      "discountAmount": 0.0,
+      "total": 32.61,
+      "payments": [
+        {
+          "method": "card",
+          "amount": 32.61,
+          "reference": "CARD_****3456",
+          "metadata": {
+            "cardType": "Visa",
+            "approvalCode": "GHI789",
+            "refundId": "REF_123456"
+          }
+        }
+      ],
+      "status": "refunded",
+      "notes": "Customer returned defective mouse",
+      "receiptNumber": "RCP-006-1720440000000",
+      "metadata": {
+        "refundReason": "Defective product",
+        "refundDate": "2025-07-05T12:00:00.000Z",
+        "refundedBy": "manager_user_001"
       }
     }
   ]

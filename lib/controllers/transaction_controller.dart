@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../services/firebase_service.dart';
 import '../services/security_service.dart';
+import '../services/error_handler_service.dart';
 import '../models/transaction_model.dart';
 import '../models/product_model.dart';
 
@@ -19,7 +20,7 @@ class CartItem {
     double? unitPrice,
     double discount = 0.0,
   })  : quantity = quantity.obs,
-        unitPrice = (unitPrice ?? product.price).obs,
+        unitPrice = (unitPrice ?? variant?.price ?? product.price).obs,
         discount = discount.obs;
 
   double get total => (unitPrice.value * quantity.value) - discount.value;
@@ -31,6 +32,7 @@ class CartItem {
 class TransactionController extends GetxController {
   final FirebaseService _firebaseService = Get.find<FirebaseService>();
   final SecurityService _securityService = Get.find<SecurityService>();
+  final ErrorHandlerService _errorHandler = Get.find<ErrorHandlerService>();
 
   // Observable states
   final RxBool isLoading = false.obs;
@@ -124,13 +126,20 @@ class TransactionController extends GetxController {
     }
 
     if (cartItems.isEmpty) {
-      Get.snackbar('Error', 'Cart is empty');
+      _errorHandler.handleValidationError(
+        'Cart is empty',
+        'Process Transaction',
+      );
       return false;
     }
 
     final totalPaid = payments.fold(0.0, (total, payment) => total + payment.amount);
     if (totalPaid < totalAmount) {
-      Get.snackbar('Error', 'Insufficient payment amount');
+      _errorHandler.handleValidationError(
+        'Insufficient payment amount',
+        'Process Transaction',
+        metadata: {'totalPaid': totalPaid, 'totalAmount': totalAmount},
+      );
       return false;
     }
 
@@ -197,10 +206,13 @@ class TransactionController extends GetxController {
 
       return true;
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to process transaction: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Process Transaction',
+        metadata: {
+          'cartItemsCount': cartItems.length,
+          'totalAmount': totalAmount,
+        },
       );
       return false;
     } finally {
@@ -277,10 +289,10 @@ class TransactionController extends GetxController {
         hasMoreTransactions.value = false;
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to load transactions: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Load Transactions',
+        metadata: {'refresh': refresh, 'hasMore': hasMoreTransactions.value},
       );
     } finally {
       isLoading.value = false;
@@ -317,10 +329,10 @@ class TransactionController extends GetxController {
 
       return true;
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to refund transaction: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Refund Transaction',
+        metadata: {'transactionId': transactionId},
       );
       return false;
     } finally {
@@ -335,10 +347,9 @@ class TransactionController extends GetxController {
   }
 
   void _showPermissionDenied() {
-    Get.snackbar(
-      'Access Denied',
-      'You do not have permission to perform this action.',
-      snackPosition: SnackPosition.BOTTOM,
+    _errorHandler.handlePermissionError(
+      'Transaction Processing',
+      metadata: {'userId': _securityService.currentUserId},
     );
   }
 

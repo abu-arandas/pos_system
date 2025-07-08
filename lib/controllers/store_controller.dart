@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../services/firebase_service.dart';
 import '../services/security_service.dart';
+import '../services/error_handler_service.dart';
 import '../models/store_model.dart';
 import '../models/user_model.dart';
 
 class StoreController extends GetxController {
   final FirebaseService _firebaseService = Get.find<FirebaseService>();
   final SecurityService _securityService = Get.find<SecurityService>();
+  final ErrorHandlerService _errorHandler = Get.find<ErrorHandlerService>();
 
   // Observable states
   final RxBool isLoading = false.obs;
@@ -54,10 +56,10 @@ class StoreController extends GetxController {
         );
       }
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        'Failed to load stores: $e',
-        snackPosition: SnackPosition.BOTTOM,
+      _errorHandler.handleError(
+        e,
+        operation: 'Load Stores',
+        metadata: {'currentUserId': _securityService.currentUserId},
       );
     } finally {
       isLoading.value = false;
@@ -79,7 +81,11 @@ class StoreController extends GetxController {
 
       storeManagers.value = snapshot.docs.map((doc) => UserModel.fromFirestore(doc)).toList();
     } catch (e) {
-      print('Error loading store managers: $e');
+      _errorHandler.handleError(
+        e,
+        operation: 'Load Store Managers',
+        metadata: {'businessId': _securityService.currentUser?.businessId},
+      );
     }
   }
 
@@ -344,7 +350,11 @@ class StoreController extends GetxController {
         'totalProducts': productsSnapshot.docs.length,
       };
     } catch (e) {
-      print('Error getting store statistics: $e');
+      Get.snackbar(
+        'Error',
+        'Failed to get store statistics: $e',
+        snackPosition: SnackPosition.BOTTOM,
+      );
       return {};
     }
   }
